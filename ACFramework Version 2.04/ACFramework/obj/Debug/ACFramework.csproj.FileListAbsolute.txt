@@ -91,3 +91,12 @@ C:\Users\jchilds\Desktop\ACFramework Version 2.03\ACFramework\bin\Debug\ACFramew
 C:\Users\jchilds\Desktop\ACFramework Version 2.03\ACFramework\obj\Debug\ACFramework.exe
 C:\Users\jchilds\Desktop\ACFramework Version 2.03\ACFramework\obj\Debug\ACFramework.pdb
 C:\Users\jchilds\Desktop\ACFramework Version 2.03\ACFramework\obj\Debug\ACFramework.csprojResolveAssemblyReference.cache
+C:\Users\meter\Desktop\Clarion Work\Spring 2018\375 Software Engineering\Semester Project\ACFramework Version 2.04\ACFramework\bin\Debug\ACFramework.exe
+C:\Users\meter\Desktop\Clarion Work\Spring 2018\375 Software Engineering\Semester Project\ACFramework Version 2.04\ACFramework\bin\Debug\ACFramework.pdb
+C:\Users\meter\Desktop\Clarion Work\Spring 2018\375 Software Engineering\Semester Project\ACFramework Version 2.04\ACFramework\bin\Debug\OpenTK.dll.config
+C:\Users\meter\Desktop\Clarion Work\Spring 2018\375 Software Engineering\Semester Project\ACFramework Version 2.04\ACFramework\obj\Debug\ACFramework.csprojResolveAssemblyReference.cache
+C:\Users\meter\Desktop\Clarion Work\Spring 2018\375 Software Engineering\Semester Project\ACFramework Version 2.04\ACFramework\obj\Debug\ACFramework.Properties.Resources.resources
+C:\Users\meter\Desktop\Clarion Work\Spring 2018\375 Software Engineering\Semester Project\ACFramework Version 2.04\ACFramework\obj\Debug\ACFramework.csproj.GenerateResource.Cache
+C:\Users\meter\Desktop\Clarion Work\Spring 2018\375 Software Engineering\Semester Project\ACFramework Version 2.04\ACFramework\obj\Debug\ACFramework.csproj.CoreCompileInputs.cache
+C:\Users\meter\Desktop\Clarion Work\Spring 2018\375 Software Engineering\Semester Project\ACFramework Version 2.04\ACFramework\obj\Debug\ACFramework.exe
+C:\Users\meter\Desktop\Clarion Work\Spring 2018\375 Software Engineering\Semester Project\ACFramework Version 2.04\ACFramework\obj\Debug\ACFramework.pdb

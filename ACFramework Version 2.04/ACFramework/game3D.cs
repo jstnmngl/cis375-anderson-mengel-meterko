@@ -49,9 +49,9 @@ namespace ACFramework
         public cCritter3DPlayer( cGame pownergame ) 
             : base( pownergame ) 
 		{ 
-			BulletClass = new cCritter3DPlayerBullet( ); 
-            Sprite = new cSpriteSphere(); 
-			Sprite.FillColor = Color.DarkGreen; 
+			BulletClass = new cCritter3DPlayerBullet( );
+            Sprite = new cSpriteQuake(ModelsMD2.Marine);//set player avatar to marine
+            Sprite.FillColor = Color.DarkGreen; 
 			Sprite.SpriteAttitude = cMatrix3.scale( 2, 0.8f, 0.4f ); 
 			setRadius( cGame3D.PLAYERRADIUS ); //Default cCritter.PLAYERRADIUS is 0.4.  
 			setHealth( 10 ); 
