@@ -149,9 +149,9 @@ namespace ACFramework
 		public override void initialize( cCritterArmed pshooter ) 
 		{ 
 			base.initialize( pshooter );
-            Sprite.FillColor = Color.Crimson;
+            Sprite.FillColor = Color.Black;
             // can use setSprite here too
-            setRadius(0.1f);
+            setRadius(0.3f);
 		} 
 
         public override bool IsKindOf( string str )
@@ -322,7 +322,7 @@ namespace ACFramework
 	{ 
 		public static readonly float TREASURERADIUS = 1.2f; 
 		public static readonly float WALLTHICKNESS = 0.5f; 
-		public static readonly float PLAYERRADIUS = 0.2f; 
+		public static readonly float PLAYERRADIUS = 0.5f; //sets the player size
 		public static readonly float MAXPLAYERSPEED = 30.0f; 
 		private cCritterTreasure _ptreasure; 
 		private bool doorcollision;
@@ -346,12 +346,12 @@ namespace ACFramework
 		I am flying into the screen from HIZ towards LOZ, and
 		LOX below and HIX above and
 		LOY on the right and HIY on the left. */ 
-			SkyBox.setSideSolidColor( cRealBox3.HIZ, Color.Aqua ); //Make the near HIZ transparent 
-			SkyBox.setSideSolidColor( cRealBox3.LOZ, Color.Aqua ); //Far wall 
-			SkyBox.setSideSolidColor( cRealBox3.LOX, Color.DarkOrchid ); //left wall 
-            SkyBox.setSideTexture( cRealBox3.HIX, BitmapRes.Wall2, 2 ); //right wall 
-			SkyBox.setSideTexture( cRealBox3.LOY, BitmapRes.Graphics3 ); //floor 
-			SkyBox.setSideTexture( cRealBox3.HIY, BitmapRes.Sky ); //ceiling 
+			SkyBox.setSideTexture( cRealBox3.HIZ, BitmapRes.Wall3); //Make the near HIZ transparent 
+			SkyBox.setSideTexture( cRealBox3.LOZ, BitmapRes.Wall3); //Far wall 
+			SkyBox.setSideTexture( cRealBox3.LOX, BitmapRes.Wall3); //left wall 
+            SkyBox.setSideTexture( cRealBox3.HIX, BitmapRes.Wall3); //right wall 
+			SkyBox.setSideTexture( cRealBox3.LOY, BitmapRes.Concrete); //floor 
+			SkyBox.setSideTexture( cRealBox3.HIY, BitmapRes.Concrete); //ceiling 
 		
 			WrapFlag = cCritter.BOUNCE; 
 			_seedcount = 7; 
@@ -390,8 +390,7 @@ namespace ACFramework
 						//which goes into the screen, so thickness goes to the right 
 				wallthickness, //_border.zradius(),  //height argument for wall's dz which goes into the screen 
 				this );
-            cSpriteTextureBox stb = new cSpriteTextureBox(pwall.Skeleton, 
-                BitmapRes.Wood2, 2 );
+            cSpriteTextureBox stb = new cSpriteTextureBox(pwall.Skeleton, BitmapRes.Concrete, 2 );
             pwall.Sprite = stb;
 		
 			cCritterDoor pdwall = new cCritterDoor( 
