@@ -322,7 +322,7 @@ namespace ACFramework
 	{ 
 		public static readonly float TREASURERADIUS = 1.2f; 
 		public static readonly float WALLTHICKNESS = 0.5f; 
-		public static readonly float PLAYERRADIUS = 0.2f; 
+		public static readonly float PLAYERRADIUS = 0.5f; //sets the player size
 		public static readonly float MAXPLAYERSPEED = 30.0f; 
 		private cCritterTreasure _ptreasure; 
 		private bool doorcollision;
