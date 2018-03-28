@@ -479,23 +479,23 @@ namespace ACFramework
 
             if (F1)
             {
-                //((cCritter3DPlayer)pcritter).Mode = 'G';
+                ((cCritter3DPlayer)pcritter).Mode = 'G';
                 return;
             }
 
             if (F2)
             {
-                //((cCritter3DPlayer)pcritter).Mode = 'F';
+                ((cCritter3DPlayer)pcritter).Mode = 'F';
                 return;
             }
             if (!_hopping && up)
             {
-                pcritter.Velocity = pcritter.AttitudeTangent.mult(pcritter.MaxSpeed / 4);//if pressing up, move forward at reduced speed and make the model run
+                pcritter.Velocity = pcritter.AttitudeTangent.mult(pcritter.MaxSpeed);//if pressing up, move forward at reduced speed and make the model run
                 pcritter.Sprite.ModelState = State.Run;
             }
             if (!_hopping && down)//if pressing down, move backwards at reduced speed and make the model run
             {
-                pcritter.Velocity = pcritter.AttitudeTangent.mult(-pcritter.MaxSpeed / 4);
+                pcritter.Velocity = pcritter.AttitudeTangent.mult(-pcritter.MaxSpeed);
                 inreverse = true;
                 pcritter.Sprite.ModelState = State.Run;
             }
