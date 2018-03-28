@@ -13,8 +13,7 @@ namespace ACFramework
         {
             _pgame = null;
             setGameClass("cGame3D");  // I'm allowing for the programmer to 
-                // make some other game class, possibly, and put it here -- 
-                // if the programmer does this, they should derive it from cGame -- JC
+              
         }
 
         public void stepDoc(float dt, ACView pactiveview) //Called by Framework.  It calls 
