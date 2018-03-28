@@ -2,7 +2,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-// mod: setRoom1 doesn't repeat over and over again
+//IM THE BEST YARRRRRRRRRRRRRRRRRR
 
 namespace ACFramework
 { 
