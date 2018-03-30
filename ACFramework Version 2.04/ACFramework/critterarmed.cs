@@ -465,7 +465,7 @@ namespace ACFramework
 		public static readonly float WAITSHOOT = 0.06f; // The default interval to wait between shots.
 		protected bool _armed; //Use this to turn the gun on or off.
 		protected float _ageshoot; //Age at last shot, so you wait a bit between shots 
-		protected float _waitshoot; //Time to wait between shots.
+		public static float _waitshoot; //Time to wait between shots.
 		protected float _gunlength; 
 		protected cVector3 _aimvector; 
 		protected bool _bshooting; 
@@ -521,7 +521,6 @@ namespace ACFramework
 			call a bunch of cCritterArmed methods. */ 
 			_armed = pcritterarmed._armed; 
 			_aimvector = pcritterarmed._aimvector; 
-			_waitshoot = pcritterarmed._waitshoot; 
 			_aimtoattitudelock = pcritterarmed._aimtoattitudelock; 
 			BulletClass = pcritterarmed._pbulletclass; 
 		}
@@ -533,16 +532,25 @@ namespace ACFramework
             return c;
         }
 
-	//Accessors 
-	
-	//Mutators 
-	
-	    /// <summary>
-	    /// Aims the weapon at the parameter.  If the AimToAttitudeLock property has been set to true,
+        //Accessors 
+
+        /// <summary>
+        /// sets the delay between bullet shots allowed using parameter pWait.
+        /// </summary>
+        public static void setShotWait(float pWait)
+        {
+            _waitshoot = pWait;
+        }
+
+
+        //Mutators 
+
+        /// <summary>
+        /// Aims the weapon at the parameter.  If the AimToAttitudeLock property has been set to true,
         /// it also sets the Tangent of the shooter to what it is aiming at.
-	    /// </summary>
-	    /// <param name="vclick">The point to aim at.</param>
-		public virtual void aimAt( cVector3 vclick ) 
+        /// </summary>
+        /// <param name="vclick">The point to aim at.</param>
+        public virtual void aimAt( cVector3 vclick ) 
 		{ 
 			if ( !_armed ) 
 				return ; 

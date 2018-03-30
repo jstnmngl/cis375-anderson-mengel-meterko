@@ -19,6 +19,7 @@ namespace ACFramework
         public static readonly int MF_POSITION = 0x00000002;
         public static readonly int MF_VELOCITY = 0x00000004;
         public static readonly int MF_ALL = cCritter.MF_POSITION | cCritter.MF_VELOCITY; //MF_POSITION | MF_VELOCITY 
+        public static bool isAlive = true;
         //Wrapflag values specify possible behaviors when critter hits edge of world.
         public static readonly int BOUNCE = 0;
         public static readonly int WRAP = 1;
@@ -189,6 +190,7 @@ namespace ACFramework
             _shieldflag = false;
             _outcode = 0;
             _score = 0;
+            isAlive = true;
             _newlevelscorestep = 0;
             _newlevelreward = 0;
             _value = 1;
@@ -386,6 +388,24 @@ namespace ACFramework
         //State Field Mutators  ================================= 
 
         //The velocity, direction, and speed mutators always keep _velocity = _speed * _tangent.
+        
+        /// <summary>
+        /// Sets flag to determine whether or not the critter has been killed by the player
+        /// isAlive will determine if the player takes damage for stomping a dead critter
+        /// </summary>
+        public virtual void setIsAlive(bool pState)
+        {
+            isAlive = pState;
+        }
+
+        /// <summary>
+        /// Returns flag to determine whether or not the critter has been killed by the player
+        /// isAlive will determine if the player takes damage for stomping a dead critter
+        /// </summary>
+        public virtual bool IsAlive()
+        {
+            return isAlive;
+        }
 
         /// <summary>
         /// Sets a critter to be a target of this critter.  You can then use the Target property to easily access this critter 

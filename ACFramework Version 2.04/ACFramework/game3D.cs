@@ -2,8 +2,6 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-// mod: setRoom1 doesn't repeat over and over again
-
 namespace ACFramework
 {
 
@@ -50,12 +48,11 @@ namespace ACFramework
             : base(pownergame)
         {
             BulletClass = new cCritter3DPlayerBullet();
-            Sprite = new cSpriteQuake(ModelsMD2.Marine);//set player avatar to marine
-            Sprite.FillColor = Color.DarkGreen;
+            Sprite = new cSpriteQuake(ModelsMD2.Marine);        //set player avatar to marine
             Sprite.SpriteAttitude = cMatrix3.scale(2, 0.8f, 0.4f);
-            setRadius(cGame3D.PLAYERRADIUS); //Default cCritter.PLAYERRADIUS is 0.4.  
-            setHealth(10);
-            Mode = 'G';
+            setRadius(cGame3D.PLAYERRADIUS);                    //Default cCritter.PLAYERRADIUS is 0.4.  
+            setHealth(10);                                      //set health of player
+            Mode = 'G';                                         //set default fire mode
             moveTo(_movebox.LoCorner.add(new cVector3(0.0f, 0.0f, 2.0f)));
             WrapFlag = cCritter.CLAMP; //Use CLAMP so you stop dead at edges.
             Armed = true; //Let's use bullets.
@@ -98,12 +95,16 @@ namespace ACFramework
          with a Treasure is different, but we let the Treasure contol that collision. */
             if (playerhigherthancritter)
             {
-
-
-
                 Framework.snd.play(Sound.Goopy);
                 addScore(10);
             }
+
+            //if the pcritter has been killed
+            else if (!pcritter.IsAlive())
+            {
+                Framework.snd.play(Sound.Crunch);//just make the sound and let pcritter.die() remove it, without player taking damage
+            }
+
             else
             {
                 damage(1);
@@ -138,7 +139,6 @@ namespace ACFramework
 
     class cCritter3DPlayerBullet : cCritterBullet
     {
-
         public cCritter3DPlayerBullet() { }
 
         public override cCritterBullet Create()
@@ -150,19 +150,26 @@ namespace ACFramework
         public override void initialize(cCritterArmed pshooter)
         {
             base.initialize(pshooter);
+
+            //if mode is set to game default - this weapon will do average damage, but has a slow delay between shots
             if (((cCritter3DPlayer)pshooter).Mode == 'G')
             {
-                Sprite = new cSpriteSphere();
-                Sprite.FillColor = Color.Green;
+                cCritterArmed.setShotWait(0.08f);//sets the delay between bullets
+                _hitstrength = 2;                //sets the damage of bullet
+                Sprite = new cSpriteSphere();    //sets the appearance of bullet (to sphere)
+                Sprite.FillColor = Color.Black;  //sets the color of bullet
+                setRadius(0.2f);                 //sets the size of bullet
             }
 
-            else//mode is F
+            else//mode is F - alternate fire mode shoots faster than default bullets, but do less damage and bounce off walls
             {
-                Sprite = new cSpriteQuake(ModelsMD2.Slith);
+                cCritterArmed.setShotWait(0.00f); //sets the dealy between bullets
+                _hitstrength = 1;                 //sets the damage of bullet
+                _dieatedges = false;              //sets the bullet to bounce off walls
+                Sprite = new cSpriteSphere();     //sets the appearance of bullet (to sphere)
+                Sprite.FillColor = Color.DarkRed; //sets the color of bullet
+                setRadius(0.08f);                 //sets the size of bullet            
             }
-
-            // can use setSprite here too
-            setRadius(0.2f);
         }
 
         public override bool IsKindOf(string str)
@@ -179,24 +186,18 @@ namespace ACFramework
         }
 
         public override bool collide(cCritter pcritter)
-        {
+        {   //if the bullet hits a critter
             if (isTarget(pcritter) && touch(pcritter))
             {
-                if (((cCritter3DPlayer)Player).Mode == 'G')
-                {
-                    pcritter.setRadius(0.9f * pcritter.Radius);
-                }
-
-                else
-                {
+                //set animation to dying, clear all forces, show critter slumped on ground then kill it
                     pcritter.Sprite.ModelState = State.FallbackDie;
                     pcritter.clearForcelist();
                     pcritter.addForce(new cForceDrag(50.0f));
                     pcritter.addForce(new cForceGravity(25.0f, new cVector3(0, -1, 0)));
-                }
+                    pcritter.setIsAlive(false);
+               
                 return true;
             }
-
             return false;
         }
     }
