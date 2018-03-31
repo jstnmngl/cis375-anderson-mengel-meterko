@@ -42,8 +42,6 @@ namespace ACFramework
 
     class cCritter3DPlayer : cCritterArmedPlayer
     {
-        private bool warningGiven = false;
-
         public cCritter3DPlayer(cGame pownergame)
             : base(pownergame)
         {
@@ -133,7 +131,7 @@ namespace ACFramework
             }
         }
 
-        public char Mode { get; internal set; }
+        public static char Mode { get; internal set; }
     }
 
 
@@ -152,7 +150,7 @@ namespace ACFramework
             base.initialize(pshooter);
 
             //if mode is set to game default - this weapon will do average damage, but has a slow delay between shots
-            if (((cCritter3DPlayer)pshooter).Mode == 'G')
+            if (cCritter3DPlayer.Mode == 'G')
             {
                 cCritterArmed.setShotWait(0.08f);//sets the delay between bullets
                 _hitstrength = 2;                //sets the damage of bullet
@@ -189,12 +187,35 @@ namespace ACFramework
         {   //if the bullet hits a critter
             if (isTarget(pcritter) && touch(pcritter))
             {
-                //set animation to dying, clear all forces, show critter slumped on ground then kill it
+                delete_me();//destroys bullet on critter collision
+
+                //if the target critter's health is still good
+                if(pcritter.Health > 0)
+                {
+                    //if the default fire mode is on
+                    if (cCritter3DPlayer.Mode == 'G')
+                    {
+                        pcritter.loseHealth(-2);//make the critter take 2 damage
+                    }
+
+                    //otherwise it is on rapid fire
+                    else
+                    {
+                        pcritter.loseHealth(-1);//make the critter take 1 damage
+                    }
+                }
+
+                //if the target critter's health is not so good (0 or less)
+                else
+                {
+                    //set animation to dying, clear all forces, show critter slumped on ground then kill it
                     pcritter.Sprite.ModelState = State.FallbackDie;
                     pcritter.clearForcelist();
                     pcritter.addForce(new cForceDrag(50.0f));
                     pcritter.addForce(new cForceGravity(25.0f, new cVector3(0, -1, 0)));
                     pcritter.setIsAlive(false);
+                }
+                    
                
                 return true;
             }
@@ -282,6 +303,17 @@ namespace ACFramework
             {
                 return "cCritter3Dcharacter";
             }
+        }
+    }
+
+    class cCritterZombie : cCritter3Dcharacter
+    {        
+
+        public cCritterZombie(cGame pownergame)
+            : base(pownergame)
+        {
+            setHealth(4);
+  
         }
     }
 

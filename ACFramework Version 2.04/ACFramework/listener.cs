@@ -479,13 +479,13 @@ namespace ACFramework
 
             if (F1)
             {
-                ((cCritter3DPlayer)pcritter).Mode = 'G';
+                cCritter3DPlayer.Mode = 'G';
                 return;
             }
 
             if (F2)
             {
-                ((cCritter3DPlayer)pcritter).Mode = 'F';
+                cCritter3DPlayer.Mode = 'F';
                 return;
             }
             if (!_hopping && up)

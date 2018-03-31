@@ -19,6 +19,7 @@ namespace ACFramework
         public static readonly int MF_POSITION = 0x00000002;
         public static readonly int MF_VELOCITY = 0x00000004;
         public static readonly int MF_ALL = cCritter.MF_POSITION | cCritter.MF_VELOCITY; //MF_POSITION | MF_VELOCITY 
+        //variables to modify specific behavior of the critter class
         public static bool isAlive = true;
         //Wrapflag values specify possible behaviors when critter hits edge of world.
         public static readonly int BOUNCE = 0;
@@ -42,7 +43,7 @@ namespace ACFramework
         protected static float BULLETRADIUS = 0.05f; //Gets set to cGame::BULLETRADIUS in cGame constructor.
         public static readonly float PLAYERRADIUS = 0.4f;
         public static readonly float LISTENERACCELERATION = 10.0f; //Default for _listeneracceleration 
-        public static readonly int STARTHEALTH = 1; //Default is 1.
+        public static readonly int STARTHEALTH = 2; //Default is 1.
         public static readonly float SAFEWAIT = 0.3f; /* Time in seconds of invulnerability, use at start up and after
 			damage, gives critters breathing room so they don't get damaged twice in a row,
 			like by the same bullet volley. */
@@ -388,7 +389,16 @@ namespace ACFramework
         //State Field Mutators  ================================= 
 
         //The velocity, direction, and speed mutators always keep _velocity = _speed * _tangent.
-        
+        /// <summary>
+        /// Method reduces critters' health
+        /// if health reaches 0, critter is killed. Parameter passed is a negative number based on weapon shot with
+        /// </summary>
+        public virtual void loseHealth(int pHealth)
+        {
+            _health += pHealth;
+        }
+
+
         /// <summary>
         /// Sets flag to determine whether or not the critter has been killed by the player
         /// isAlive will determine if the player takes damage for stomping a dead critter
