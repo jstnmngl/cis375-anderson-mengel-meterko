@@ -46,6 +46,13 @@ git commit –m “message” //commit added files with –m “a message” Please read thi
 
 git pull master //do this often to make sure you are updated on code
 
+then update specification.txt with what you fixed. The specification document is our rough outline of the project and will have 4 sections
+
+- Completed : Any requirements that we have implemented into the game
+- Incomplete : Requirements that we have yet to implemented
+- Known Bugs : Any bugs that we have encountered (or created) Just to keep track of what else needs done along with the requirements.
+- Features : Stuff to add if we have enough time...
+
 Authors
 
 · Jerad Meterko – Developer – GitHub Repo Admin

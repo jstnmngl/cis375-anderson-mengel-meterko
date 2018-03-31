@@ -1,0 +1,113 @@
+PROJECT REQUIREMENTS (taken from the specification document):
+
+1)
+   At least 3 distinct rooms with doorways between rooms (portal
+or teleportation device[s])
+2)
+   At least 4 distinct walls
+3)
+   One ‘permanent’ MD2 model character other than the player.
+(made without seedCritters)
+4)
+   At least 3 different MD2 models currently not in the original
+version of the AC Framework. Create different classes for each of these models.
+Must have different functionality from other classes. (See example on attached
+requirements sheet)
+5)
+   At least 5 different states for the models (using
+Sprite.ModelState or Sprite.setstate)
+6)
+   At least 1 moving wall (opening door or moving platform) Must
+be created in a class derived from cCritterWall.
+7)
+   At least one bullet class must be derived from one of the
+existing bullet classes.
+8)
+   The use of at least one key (on the keyboard) not included
+within the original version of the AC Framework. Must have a different use
+other than the current uses of keys. You must make your own listener class,
+derived from another listener class.
+9)
+   At least 3 bitmaps (textures) not included in the original
+version.
+10) At
+least 3 sounds not included in the original version. (Use sounds from folder in
+ACProject)
+11) At
+least 1 collide function with a special effect not in the original version.
+12) At
+least 1 win to win and 1 way to lose. (Enable a cheat to override loss)
+2.
+  
+  
+============================================================================================================================
+INCOMPLETE SECTION  
+============================================================================================================================
+  
+  
+Project Requirements Fulfillment
+ 
+The following numbers correspond to Section 1.4. We are going to complete the project requirements as follows:
+ 
+1)    Using 3 “wave rooms” where player must cross the room of zombies to make it to next room. The final, fourth room is the boss area.
+ 
+2)
+   Each room will have a different layout of critter walls,
+forcing the player to move through ‘hallways’
+ 
+3)
+  The boss critter will be our permanent model, since we are giving
+this enemy different behaviors and health from the normal enemies.
+ 
+4)
+   We will be making 3 different types of zombies, each using a
+different class.
+            Examples of different Zombie types (classes):
+                        - zombieTank: Increased health, slower speed.
+                        - zombieRunner: Decreased health, faster speed.
+                        - zombieWalker: Average health and speed.
+ 
+5)
+   Using different model states for:
+1. When player and zombies taking damage
+2. When player fires weapon
+3. When player switches weapon
+4. When player dies
+5. When player and zombies move
+ 
+6)
+   The moving wall will be a bigger door that opens, revealing
+the path to the boss room.
+ 
+ 
+9)
+   Adding new textures for wall, floor, and ceiling.
+ 
+10) Zombie
+sound, gun sound, boss sound, and victory sound.
+ 
+12) At least 1 win to win and 1 way to lose. (Enable a cheat to override loss)
+
+============================================================================================================================
+COMPLETED SECTION  
+============================================================================================================================
+
+
+7)
+   Making a bullet class to fire faster, but with less damage
+ 
+8)
+   Making a switch bullet key to change to the new bullet class.
+   
+============================================================================================================================
+KNOWN BUGS
+============================================================================================================================
+
+Bitmap glitch (all walls and other textures have a 'rainbow' effect
+Model polys color glitch (all polys on player and enemies flash colors like the bitmap glitch) Does original framework do this?
+
+
+============================================================================================================================
+FEATURES (Ideas to implement if enough time is present
+============================================================================================================================
+Sniper gun mode. Slow to shoot, but shots do high damage and pierce targets. 
