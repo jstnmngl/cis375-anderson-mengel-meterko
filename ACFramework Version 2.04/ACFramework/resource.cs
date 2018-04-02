@@ -343,7 +343,7 @@ namespace ACFramework
 
         // at least one must be set true
         private static readonly ModelsMD2Info[] minfo = {
-            new ModelsMD2Info( "slith", "chompers.pcx", 0.0f, true ),
+            new ModelsMD2Info( "slith", "chompers.pcx", 0.1f, true ),
             new ModelsMD2Info( "Tyrant", "hivetyrant.pcx", 0.0f, true ),
             new ModelsMD2Info( "marine", "Reese.pcx", 0.3f, false ),
         };

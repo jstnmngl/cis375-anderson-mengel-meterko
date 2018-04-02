@@ -98,7 +98,7 @@ namespace ACFramework
             }
 
             //if the pcritter has been killed
-            else if (!pcritter.IsAlive())
+            else if (pcritter.Sprite.ModelState == State.FallbackDie)
             {
                 Framework.snd.play(Sound.Crunch);//just make the sound and let pcritter.die() remove it, without player taking damage
             }
@@ -152,7 +152,7 @@ namespace ACFramework
             //if mode is set to game default - this weapon will do average damage, but has a slow delay between shots
             if (cCritter3DPlayer.Mode == 'G')
             {
-                cCritterArmed.setShotWait(0.08f);//sets the delay between bullets
+                cCritterArmed.setShotWait(0.10f);//sets the delay between bullets
                 _hitstrength = 2;                //sets the damage of bullet
                 Sprite = new cSpriteSphere();    //sets the appearance of bullet (to sphere)
                 Sprite.FillColor = Color.Black;  //sets the color of bullet
@@ -187,7 +187,7 @@ namespace ACFramework
         {   //if the bullet hits a critter
             if (isTarget(pcritter) && touch(pcritter))
             {
-                delete_me();//destroys bullet on critter collision
+                delete_me();//destroys bullet on critter collision (so shots don't pierce targets)
 
                 //if the target critter's health is still good
                 if(pcritter.Health > 0)
@@ -202,6 +202,7 @@ namespace ACFramework
                     else
                     {
                         pcritter.loseHealth(-1);//make the critter take 1 damage
+
                     }
                 }
 
@@ -215,8 +216,7 @@ namespace ACFramework
                     pcritter.addForce(new cForceGravity(25.0f, new cVector3(0, -1, 0)));
                     pcritter.setIsAlive(false);
                 }
-                    
-               
+
                 return true;
             }
             return false;
@@ -230,11 +230,14 @@ namespace ACFramework
             : base(pownergame)
         {
             addForce(new cForceGravity(25.0f, new cVector3(0.0f, -1, 0.00f)));
-            addForce(new cForceDrag(20.0f));  // default friction strength 0.5 
+            addForce(new cForceDrag(0.5f));  // default friction strength 0.5 
             Density = 2.0f;
             MaxSpeed = 30.0f;
             if (pownergame != null) //Just to be safe.
-                Sprite = new cSpriteQuake(Framework.models.selectRandomCritter());
+
+            addForce(new cForceObjectSeek(Player, 0.5f));
+            Sprite = new cSpriteQuake(ModelsMD2.Slith);
+
 
             // example of setting a specific model
             // setSprite(new cSpriteQuake(ModelsMD2.Knight));
@@ -269,8 +272,7 @@ namespace ACFramework
                 endf = temp;
             }
 
-            Sprite.setstate(State.Other, begf, endf, StateType.Repeat);
-
+            Sprite.setstate(State.Run, begf, endf, StateType.Repeat);
 
             _wrapflag = cCritter.BOUNCE;
 
