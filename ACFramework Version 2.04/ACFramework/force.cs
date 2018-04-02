@@ -265,8 +265,9 @@ namespace ACFramework
             if (_pnode == null)
                 return new cVector3(0.0f, 0.0f, 0.0f);
 			cVector3 pursueforcevector = 
-				( pcritter.directionTo( _pnode ).mult( pcritter.MaxSpeed)).sub( pcritter.Velocity ); 
-			pursueforcevector.Magnitude = _intensity; 
+				( pcritter.directionTo( _pnode ).mult( pcritter.MaxSpeed)).sub( pcritter.Velocity );
+
+            pursueforcevector.Magnitude = _intensity + 2; //increase the intensity, stronger the 'seek' force
 			pursueforcevector.multassign( pcritter.Mass );
             cVector3 p = new cVector3();
             p.copy( pursueforcevector );

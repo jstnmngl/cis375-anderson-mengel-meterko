@@ -13,7 +13,7 @@ namespace ACFramework
 		public static readonly new float FIXEDLIFETIME = 3.0f; //Life in seconds before spontaneous decay, currently 3.0.
 		public static readonly new float MAXSPEED = 22.0f; //Greater than cCritter::MAXSPEED. Currently 22.0.
 		public static readonly bool DIEATEDGES = true; //Default _dieatedges is TRUE for disappear at edges.
-		public static readonly float BULLETSPEED = 10.0f; 
+		public static readonly float BULLETSPEED = 50.0f; 
 	//Serialized fields 
 		protected int _hitstrength; //How much damage it does.
 		protected int _shooterindex; //Helper used only in Serialize 
@@ -83,7 +83,7 @@ namespace ACFramework
 				_pshooter->velocity() to the new velocity. */ 
 			setTarget( _pshooter.Target); 
 			WrapFlag = _pshooter.WrapFlag; 
-			cVector3 start = _pshooter.Position; //position() 
+			cVector3 start = _pshooter.Position.add(new cVector3(0.0f, 1.0f, 0.0f)); //JCM - add new cvector to increase shot height
 				/* I want to start the bullet out at the tip of the gun, with the provision
 				that in any case I will I start it out far enough so that it's not touching
 				the shooter. */ 

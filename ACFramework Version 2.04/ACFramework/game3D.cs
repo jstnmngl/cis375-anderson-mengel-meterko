@@ -216,6 +216,9 @@ namespace ACFramework
                     pcritter.addForce(new cForceDrag(50.0f));
                     pcritter.addForce(new cForceGravity(25.0f, new cVector3(0, -1, 0)));
                     pcritter.setIsAlive(false);
+
+                    //add score for killing a Critter
+                    Player.addScore(1);
                 }
 
                 return true;
@@ -291,7 +294,6 @@ namespace ACFramework
 
         public override void die()
         {
-            Player.addScore(Value);
             base.die();
         }
 
@@ -516,9 +518,9 @@ namespace ACFramework
                 {
                     value.setViewpoint(new cVector3(0.0f, 0.3f, -1.0f), _border.Center);
                     //Always make some setViewpoint call simply to put in a default zoom.
-                    value.zoom(0.35f); //Wideangle 
+                    value.zoom(0.05f); //Wideangle 
                     cListenerViewerRide prider = (cListenerViewerRide)(value.Listener);
-                    prider.Offset = (new cVector3(-1.5f, 0.0f, 1.0f)); /* This offset is in the coordinate
+                    prider.Offset = (new cVector3(-1.5f, 0.0f, 11.0f)); /* This offset is in the coordinate
 				    system of the player, where the negative X axis is the negative of the
 				    player's tangent direction, which means stand right behind the player. */
                 }
