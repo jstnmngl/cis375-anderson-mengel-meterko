@@ -111,3 +111,4 @@ Model polys color glitch (all polys on player and enemies flash colors like the 
 FEATURES (Ideas to implement if enough time is present
 ============================================================================================================================
 Sniper gun mode. Slow to shoot, but shots do high damage and pierce targets. 
+WASD movability
